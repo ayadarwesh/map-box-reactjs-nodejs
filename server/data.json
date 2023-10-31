@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "email": "john@xyz.com",
+      "password": "123abc"
+    },
+    {
+      "email": "mike@xyz.com",
+      "password": "123abc"
+    }
+  ],
+  "polygons": [
+    {
+      "title": "Polygon1",
+      "area": []
+    },
+    {
+      "title": "Polygon2",
+      "area": []
+    },
+    {
+      "title": "Polygon3",
+      "area": []
+    }
+  ]
+}

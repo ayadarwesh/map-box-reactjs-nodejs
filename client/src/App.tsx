@@ -6,9 +6,20 @@ function App() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
-    fetch("/api")
+    fetch("/api/login",{
+        method:'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify({email:'john@xyz.com',password:'123abc'})
+    })
         .then((res) => res.json())
-        .then((data) => setData(data.message));
+        .then((data) =>
+        {
+            setData(data.message)
+        }
+
+        );
   }, []);
 
   return (
