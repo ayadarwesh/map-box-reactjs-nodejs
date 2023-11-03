@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@deck.gl/geo-layers": "^8.9.32",
+    "@deck.gl/react": "^8.9.32",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.16",
@@ -14,10 +16,18 @@
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
     "deck.gl": "^8.9.32",
+    "mapbox-gl": "^2.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-map-gl": "^7.1.6",
+    "react-mapbox-gl": "^5.1.1",
+    "react-redux": "^8.1.3",
+    "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.1",
+    "redux-saga": "^1.2.3",
     "typescript": "^4.9.5",
+    "typings": "^2.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

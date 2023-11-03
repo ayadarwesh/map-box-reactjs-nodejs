@@ -1,35 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Route, Routes} from 'react-router-dom'
 import './App.css';
+import {useDispatch, useSelector} from "react-redux";
+import {setUser} from "./redux/actions";
+import Layout from './layouts/Layout';
+import Page404 from "./pages/404";
+import Login from "./pages/Login";
+import Users from "./pages/Users";
+import MapBox from "./pages/MapBox";
 
 function App() {
-  const [data, setData] = React.useState(null);
+    const dispatch = useDispatch();
+    const isAuth = useSelector((state:any) => state.auth.isAuth)
+    const user = useSelector((state:any) => state.auth.user)
 
-  React.useEffect(() => {
-    fetch("/api/login",{
-        method:'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body:JSON.stringify({email:'john@xyz.com',password:'123abc'})
-    })
-        .then((res) => res.json())
-        .then((data) =>
-        {
-            setData(data.message)
+
+    React.useEffect(() => {
+        let user = localStorage.getItem('user')!;
+        user && dispatch(setUser(user));
+    },[]);
+
+    React.useEffect(() => {
+        if (isAuth) {
+            dispatch(setUser(user));
         }
+    }, [isAuth]);
 
-        );
-  }, []);
-
-  return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>{!data ? "Loading..." : data}</p>
-        </header>
-      </div>
-  );
+    return (<Routes>
+            <Route path="/" element={<Login/>}/>
+            <Route
+                path='/login'
+                element={<Layout><Login/></Layout>}
+            />
+        {(isAuth || user) &&
+            <React.Fragment>
+        <Route
+            path='/users'
+            element={<Layout><Users/></Layout>}
+        />
+            <Route
+            path='/map'
+            element={<Layout><MapBox/></Layout>}
+            />
+            </React.Fragment>
+        }
+        <Route path="*" element={<Layout><Page404/></Layout>}/>
+        </Routes>);
 }
 
 export default App;
